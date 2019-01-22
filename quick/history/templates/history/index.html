@@ -1,0 +1,15 @@
+{% if artist_list %}
+    <ul>
+    {% for artist in artist_list %}
+        <li><a href="/history/{{artist.id}}/">{{ artist.artist_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No artist are available.</p>
+{% endif %}
+    <form method="post" action="{% url 'history:newArtist' %}">
+      {% csrf_token %}
+      <label for="newArtist">New Artist</label><br>
+      <input type="text" name="artist" id = "newArtist">
+      <input type = "submit" value="Artist">
+    </form>

@@ -1,0 +1,11 @@
+<h1>{{ artist.artist_name }}</h1>
+{% if song_list %}
+<ul>
+  {% for song in song_list %}
+  <li>{{ song.song_name }}</li>
+  {% endfor %}
+{% else %}
+  <p>No Songs</p>
+
+</ul>
+{% endif %}
