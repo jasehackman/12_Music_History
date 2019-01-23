@@ -3,9 +3,20 @@
 <ul>
   {% for song in song_list %}
   <li>{{ song.song_name }}</li>
+  <a href="{% url 'history:deleteSong' '{{song.id}}'' %}">Delete</a>
   {% endfor %}
 {% else %}
   <p>No Songs</p>
 
 </ul>
 {% endif %}
+<br>
+<br>
+<form method="post" action="{% url 'history:newSong' %}">
+  {% csrf_token %}
+  <label for="newSong">New Song</label><br>
+  <input type="text" name="song" id = "newSong"><br><br>
+  <input type="hidden" name="artist" value = "{{artist.artist_name}}" id = "artist">
+  <input type = "submit" value="Add Song">
+</form>
+

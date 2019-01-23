@@ -18,7 +18,7 @@ def details(request, id):
   return render(request, 'history/details.html', context)
 
 
-def newArtist(request ):
+def newArtist(request):
 
   artist = Artist(artist_name = request.POST['artist'])
   artist.save()
@@ -29,3 +29,13 @@ def newArtist(request ):
   return HttpResponseRedirect(reverse('history:details', args=(added_artist[0].id,)))
 
 
+def newSong(request):
+  artistId = Artist.objects.get(artist_name=request.POST['artist'])
+  print("artistId", artistId.id)
+  song = Song(song_name = request.POST['song'], artist_id=artistId.id)
+  song.save()
+  return HttpResponseRedirect(reverse('history:details', args=(artistId.id, )))
+  # print("SONG", song)
+
+def deleteSong(request, songId):
+  print(songId)
